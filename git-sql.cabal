@@ -1,0 +1,23 @@
+name:           GitSql
+version:        0.1
+cabal-version:  >=1.2
+build-type:     Simple
+author:         proegssilb@gmail.com
+
+library
+    Exposed-modules:    Data.Schema.Sql.ScriptParse
+    build-depends:      base,
+                        parsec
+    hs-source-dirs:     src
+
+test-suite git-sql-tests
+    type:           exitcode-stdio-1.0
+    hs-source-dirs: test, src
+    main-is:        MainTestSuite.hs
+    build-depends:  base,
+                    QuickCheck,
+                    HUnit,
+                    tasty,
+                    tasty-quickcheck,
+                    tasty-hunit,
+                    tasty-th
