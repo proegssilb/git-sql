@@ -2,6 +2,8 @@
 
 A git extension to allow version-controlling SQL databases independent of ORMs and special entity-relational management libraries.
 
+[![Build Status](https://travis-ci.org/proegssilb/git-sql.png?branch=master)](https://travis-ci.org/proegssilb/git-sql)
+
 ## Background/Theory of Operation
 
 The extension will work by translating the current database state into scripts, and version controlling those scripts. There are two things that make this possible:
