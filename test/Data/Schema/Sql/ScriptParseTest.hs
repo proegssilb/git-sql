@@ -15,7 +15,7 @@ import Data.Schema.Sql.TypeInstances
 import Data.Schema.Sql.Types
 import Data.Schema.Sql.ScriptParse
 
---- TESTS GO HERE ---
+--- TESTS GO HERE  ---
 
 --prop_ParsesTables :: [Char] -> Table -> Bool
 --prop_ParsesTables script tbl =  parseScript script == tbl
