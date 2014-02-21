@@ -1,5 +1,5 @@
 {-# LANGUAGE TemplateHaskell #-}
--- ScriptParseTest.hs
+-- SqlFetchTest.hs
 --
 -- Copyright 2014 David Bliss <david@algorithmicarmada.com>
 --
@@ -8,8 +8,7 @@
 --
 --   http://choosealicense.com/licenses/bsd-3-clause/
 
-
-module Data.Schema.Sql.ScriptParseTest
+module Data.Schema.Sql.SqlFetchTest
 where
 
 import Test.QuickCheck
@@ -19,18 +18,15 @@ import Test.Tasty.QuickCheck
 import Test.Tasty.HUnit
 import Test.Tasty.TH
 
-
 import Data.Schema.Sql.TypeInstances
 import Data.Schema.Sql.Types
-import Data.Schema.Sql.ScriptParse
+import Data.Schema.Sql.SqlFetch
 
---- TESTS GO HERE  ---
 
---prop_ParsesTables :: [Char] -> Table -> Bool
---prop_ParsesTables script tbl =  parseScript script == tbl
+case_FetchInformationSchemaTable = do
+        Table (Name tblName) cols <- fetchTable "information_schema" "tables"
+        "tables" @=? tblName
+        length(cols) @=? 12
 
-case_BasicTableParse = do (Table (Name "asdf") [(Column "qwer" Integerdt), (Column "kjhj" Varchar)]) @=? parseScript "CREATE TABLE asdf (\n  qwer INTEGER,\n  kjhj VARCHAR\n)"
-
---- TESTS END HERE ---
 
 testGroup = $(testGroupGenerator)
