@@ -10,6 +10,16 @@
 module Data.Schema.Sql.SqlFetch where
 
 import Data.Schema.Sql.Types
+import Database.HDBC
+import Database.HDBC.PostgreSQL
 
-fetchTable :: String -> String -> IO Table
-fetchTable schema name = do {return $ Table (Name "tables") [Column "bar" Varchar]}
+fetchTable ::Connection -> String -> String -> IO Table
+fetchTable conn schema name = do 
+  tblDesc <- describeTable conn name
+  return $ Table (Name name) (map (\(nm, coldesc) -> Column nm Varchar) tblDesc)
+
+-- |Obtains a connection to any supported DB. P(ostgres) is the only prefix
+--  available at the moment.
+connect :: String -> IO Connection
+connect ('P':connstr) = connectPostgreSQL connstr
+

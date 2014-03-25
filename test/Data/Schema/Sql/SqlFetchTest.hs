@@ -24,7 +24,8 @@ import Data.Schema.Sql.SqlFetch
 
 
 case_FetchInformationSchemaTable = do
-        Table (Name tblName) cols <- fetchTable "information_schema" "tables"
+        conn <- connect "Phost=localhost user=postgres"
+        Table (Name tblName) cols <- fetchTable conn "information_schema" "tables"
         "tables" @=? tblName
         length(cols) @=? 12
 

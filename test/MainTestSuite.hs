@@ -13,12 +13,11 @@ module Main (
 ) where
 
 import Test.Tasty
-import Test.Tasty.QuickCheck
-import System.Exit
 
 import qualified Data.Schema.Sql.ScriptParseTest as SPT (testGroup)
 import qualified Data.Schema.Sql.SqlFetchTest as SFT (testGroup)
 
+main :: IO ()
 main = defaultMain tests
 
 tests :: TestTree
